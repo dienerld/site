@@ -5,11 +5,8 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-11',
   modules: [
     '@nuxt/ui',
-    'nuxt-auth-utils',
     '@nuxtjs/i18n',
     '@nuxt/image',
-    'nuxt-marquee',
-    '@vueuse/motion/nuxt',
     'nuxt-svgo',
   ],
   css: ['~/assets/css/main.css'],
