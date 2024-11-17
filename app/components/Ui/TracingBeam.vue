@@ -87,7 +87,7 @@ function mapRange(
 </script>
 
 <template>
-  <div ref="tracingBeamRef" :class="`relative w-full max-w-4xl mx-auto -left-3 sm:-left-1.5 md:-left-0 h-full  ${props.class})`">
+  <div ref="tracingBeamRef" :class="`relative w-full max-w-4xl mx-auto sm:-left-1.5 md:-left-0 h-full  ${props.class})`">
     <div class="absolute -left-4 top-3 md:-left-12">
       <div
         :style="{
