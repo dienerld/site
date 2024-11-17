@@ -32,4 +32,10 @@ export default {
   table: {
     noData: 'Sem dados',
   },
+
+  site: {
+    title: 'Dienerld - Site pessoal',
+    description: 'Olá seja bem vindo ao meu site, aqui você conhecerá toda minha jornada no desenvolvimento de sites.',
+    lang: 'pt-BR',
+  },
 }

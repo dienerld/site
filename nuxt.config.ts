@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import process from 'node:process'
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   future: { compatibilityVersion: 4 },
@@ -7,19 +9,13 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxtjs/i18n',
     '@nuxt/image',
+    '@nuxtjs/seo',
   ],
   css: ['~/assets/css/main.css'],
-  components: [
-    {
-      path: '~/components',
-      pathPrefix: false,
-      ignore: ['**/_core/**'],
-    },
-    {
-      path: '~/components/_core',
-      pathPrefix: false,
-    },
-  ],
+  site: {
+    url: process.env.SITE_URL,
+    name: process.env.SITE_NAME,
+  },
   i18n: {
     lazy: true,
     defaultLocale: 'br',
