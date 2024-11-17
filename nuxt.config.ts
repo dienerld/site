@@ -10,13 +10,22 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxt/image',
     '@nuxtjs/seo',
+    '@vueuse/motion/nuxt',
   ],
   css: ['~/assets/css/main.css'],
+  runtimeConfig: {
+    public: {
+      contact: {
+        email: process.env.CONTACT_EMAIL,
+      },
+    },
+  },
   site: {
     url: process.env.SITE_URL,
     name: process.env.SITE_NAME,
   },
   i18n: {
+    debug: false,
     lazy: true,
     defaultLocale: 'br',
     locales: [{

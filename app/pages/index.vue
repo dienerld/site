@@ -1,16 +1,18 @@
 <script setup lang="ts">
+import Home from '~/modules/home/Home.vue'
+
 const { t } = useI18n({ useScope: 'local', fallbackRoot: true })
 
 useHead({
-  title: t('title'),
+  title: t('meta.title'),
   htmlAttrs: {
     lang: t('site.lang'),
   },
 })
 useSeoMeta({
-  title: t('title'),
+  title: t('meta.title'),
   description: t('site.description'),
-  ogTitle: t('title'),
+  ogTitle: t('meta.title'),
   ogDescription: t('site.description'),
 })
 
@@ -21,18 +23,20 @@ defineOgImageComponent('Main', {
 </script>
 
 <template>
-  <h1 class="text-center text-5xl">
-    {{ t('title') }} (WIP)
-  </h1>
+  <Home />
 </template>
 
 <i18n lang="json">
-  {
-    "en": {
+{
+  "en": {
+    "meta": {
       "title": "Home"
-    },
-    "br": {
+    }
+  },
+  "br": {
+    "meta": {
       "title": "Início"
     }
   }
+}
 </i18n>
