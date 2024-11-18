@@ -21,9 +21,9 @@ const pages = ref([
         v-for="page in pages"
         :key="page.name"
         variant="ghost"
-        size="lg"
+        active-class="border"
+        size="md"
         :to="localePath(page.to)"
-        class="rounded-full"
         :label="t(page.name)"
       />
     </nav>

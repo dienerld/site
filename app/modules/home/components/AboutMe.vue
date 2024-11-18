@@ -4,7 +4,7 @@ const { t } = useI18n({ useScope: 'local' })
 
 <template>
   <section id="about-me" class="mt-8 flex flex-col gap-2 text-center">
-    <h2 class="text-3xl font-semibold mb-4">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4">
       {{ t('title') }}
     </h2>
     <p class="text-lg">

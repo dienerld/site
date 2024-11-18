@@ -6,6 +6,6 @@ import Presentation from '~/modules/home/components/Presentation.vue'
 
 <template>
   <Presentation />
-  <AboutMe />
-  <Experience />
+  <AboutMe class="mt-10" />
+  <Experience class="mt-10" />
 </template>

@@ -2,7 +2,7 @@
 import { useSpring } from 'vue-use-spring'
 
 const props = defineProps<{
-  class: string
+  class?: string
 }>()
 
 const tracingBeamRef = ref<HTMLDivElement>()
@@ -87,7 +87,7 @@ function mapRange(
 </script>
 
 <template>
-  <div ref="tracingBeamRef" :class="`relative w-full max-w-4xl mx-auto sm:-left-1.5 md:-left-0 h-full  ${props.class})`">
+  <div ref="tracingBeamRef" :class="`relative w-full  mx-auto sm:-left-1.5 md:-left-0 h-full  ${props.class})`">
     <div class="absolute -left-4 top-3 md:-left-12">
       <div
         :style="{
@@ -98,7 +98,8 @@ function mapRange(
           :enter="{
             backgroundColor: scrollYProgress > 0 ? 'white' : 'var(--emerald-500)',
             borderColor: scrollYProgress > 0 ? 'white' : 'var(--emerald-600)',
-          }" class="size-2 rounded-full border border-neutral-300 bg-white"
+          }"
+          class="size-2 rounded-full border border-neutral-300 bg-white"
         />
       </div>
       <svg
