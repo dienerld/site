@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import Projects from '~/modules/projects/Projects.vue'
+
+definePageMeta({
+  layout: 'default',
+})
+
 const { t } = useI18n({ useScope: 'local' })
 
 useHead({
@@ -10,9 +16,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <h1 class="text-center text-5xl">
-    {{ t('title') }} (WIP)
-  </h1>
+  <Projects />
 </template>
 
 <i18n lang="json">

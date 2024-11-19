@@ -20,6 +20,7 @@ useSeoMeta({
   <NuxtLayout>
     <UApp
       :toaster="{ position: 'top-center', duration: 3000 }"
+      :tooltip="{ delayDuration: 200, disabled: false }"
       :locale="$i18n.locale"
     >
       <NuxtPage />

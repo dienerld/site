@@ -107,5 +107,11 @@
     "postcss"
   ],
   "iconify.annotations": false,
-  "iconify.inplace": false
+  "iconify.inplace": false,
+  "i18n-ally.localesPaths": [
+    "locale",
+    "app/**/*.vue",
+    "i18n",
+    "i18n/locales"
+  ]
 }

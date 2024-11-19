@@ -4,8 +4,8 @@ const { t } = useI18n({ useScope: 'local' })
 
 const pages = ref([
   { name: 'Home', to: '/' },
-  { name: 'Posts', to: '/posts' },
   { name: 'Projects', to: '/projects' },
+  { name: 'Posts', to: '/posts' },
 ])
 </script>
 
