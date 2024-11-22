@@ -14,6 +14,10 @@ const items = computed(() => [
 ])
 
 const icon = computed(() => items.value.find(item => item.value === colorMode.value)?.icon)
+
+function toggleColorMode() {
+  colorMode.preference = colorMode.value === 'light' ? 'dark' : 'light'
+}
 </script>
 
 <template>
@@ -24,10 +28,10 @@ const icon = computed(() => items.value.find(item => item.value === colorMode.va
       :aria-describedby="t('color-change')"
       variant="ghost"
       size="sm"
-      @click="$colorMode.preference = ($colorMode.preference === 'dark' ? 'light' : 'dark')"
+      @click="toggleColorMode"
     >
       <Icon
-        v-if="$colorMode.preference === 'dark'"
+        v-if="$colorMode.preference === 'light'"
         name="lucide:moon"
         class="size-6 text-primary-500"
       />
