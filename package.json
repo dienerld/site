@@ -8,26 +8,42 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "db:migrate": "drizzle-kit migrate:sqlite --config ./config/drizzle.config.ts",
+    "db:push": "drizzle-kit push:sqlite --config ./config/drizzle.config.ts",
+    "db:studio": "drizzle-kit studio --config ./config/drizzle.config.ts"
+  },
+  "dependencies": {
+    "@vueuse/core": "^11.2.0",
+    "@vueuse/motion": "^2.2.6",
+    "better-sqlite3": "^9.6.0",
+    "drizzle-orm": "^0.36.4",
+    "markdown-it": "^14.1.0",
+    "sanitize-html": "^2.13.0",
+    "slugify": "^1.6.6",
+    "ulid": "^2.3.0",
+    "vue-use-spring": "^0.3.3"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.8.0",
     "@iconify-json/flag": "^1.2.2",
     "@iconify-json/simple-icons": "^1.2.11",
+    "@libsql/client": "^0.6.2",
+    "@nuxt/content": "2.13.4",
     "@nuxt/devtools": "latest",
     "@nuxt/image": "^1.8.1",
     "@nuxt/ui": "^3.0.0-alpha.8",
     "@nuxtjs/i18n": "^9.0.0",
+    "@nuxtjs/mdc": "^0.7.0",
     "@nuxtjs/seo": "^2.0.0-rc.23",
+    "@nuxtjs/sitemap": "^5.1.5",
     "@tailwindcss/typography": "^0.5.15",
+    "@types/better-sqlite3": "^7.6.12",
+    "drizzle-kit": "^0.28.1",
     "eslint": "^9.12.0",
     "eslint-plugin-format": "^0.1.2",
     "nuxt": "^3.14.159",
+    "nuxt-auth-utils": "^0.5.5",
     "tailwindcss-animate": "^1.0.7"
-  },
-  "dependencies": {
-    "@vueuse/core": "^11.2.0",
-    "@vueuse/motion": "^2.2.6",
-    "vue-use-spring": "^0.3.3"
   }
 }
