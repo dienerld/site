@@ -14,8 +14,9 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/seo',
     '@vueuse/motion/nuxt',
-    '@nuxt/content',
     'nuxt-auth-utils',
+    '@nuxtjs/mdc',
+    '@nuxtjs/sitemap',
   ],
   css: ['~/assets/css/main.css'],
   runtimeConfig: {

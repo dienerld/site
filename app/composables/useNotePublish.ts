@@ -20,15 +20,16 @@ export function useNotePublish({ slug }: PublishOptions) {
 
       toast.add({
         title: 'Note publish!',
-        color: 'green',
       })
-    } catch (error) {
+    }
+    catch (error) {
       toast.add({
         title: 'Note publish error',
         description: error.data?.message,
-        color: 'red',
+        color: 'error',
       })
-    } finally {
+    }
+    finally {
       finish()
     }
   }

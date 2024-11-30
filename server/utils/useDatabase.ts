@@ -1,10 +1,10 @@
 import type { LibSQLDatabase } from 'drizzle-orm/libsql'
+import process from 'node:process'
 import { createClient as createLibSQLClient } from '@libsql/client/http'
 import { drizzle as drizzleLibSQL } from 'drizzle-orm/libsql'
 
-export * as tables from '~/server/database/schema'
-
 let database: LibSQLDatabase | null = null
+export * as tables from '../database/schema'
 
 export function useDatabase() {
   const { tursoDBURL, tursoDBToken } = useRuntimeConfig()

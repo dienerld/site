@@ -1,4 +1,4 @@
-import type { NoteVirtual } from '~/entities/Note'
+import type { NoteVirtual } from '~~/shared/entities/note'
 
 export interface UpdateOptions {
   slug: string
@@ -26,15 +26,16 @@ export function useNoteUpdate({ slug, note }: UpdateOptions) {
 
       toast.add({
         title: 'Note updated!',
-        color: 'green',
       })
-    } catch (error) {
+    }
+    catch (error) {
       toast.add({
         title: 'Note update error',
         description: error.data?.message,
-        color: 'red',
+        color: 'error',
       })
-    } finally {
+    }
+    finally {
       finish()
     }
   }

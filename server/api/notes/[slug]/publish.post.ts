@@ -21,14 +21,14 @@ export default eventHandler(async (event) => {
     throw createError({ statusCode: 400, message: 'Missing slug' })
   }
 
-  const { publishing, host } = useAppConfig()
+  // const { publishing, host } = useAppConfig()
   const { nodeEnv } = useRuntimeConfig()
   const db = useDatabase()
   if (!db) {
     throw createError({ statusCode: 500, message: 'Database not available' })
   }
 
-  const [note] = await db
+  await db
     .update(tables.notes)
     .set({
       isDraft: false,
@@ -37,17 +37,17 @@ export default eventHandler(async (event) => {
     .where(eq(tables.notes.slug, slug))
     .returning()
 
-  const isProd = nodeEnv === 'production'
-  if (publishing.twitter && isProd) {
-    const { tweetText } = useTwitter()
-    const url = `https://${host}/note/${slug}`
-    const text = tweet({
-      url,
-      title: note.title,
-    })
+  // const isProd = nodeEnv === 'production'
+  // if (publishing.twitter && isProd) {
+  //   // const { tweetText } = useTwitter()
+  //   const url = `https://${host}/note/${slug}`
+  //   const text = tweet({
+  //     url,
+  //     title: note.title,
+  //   })
 
-    await tweetText(text)
-  }
+  //   await tweetText(text)
+  // }
 
   return { slug }
 })

@@ -16,8 +16,10 @@ export function useNoteView({ slug, userId }: NoteViewOptions) {
           userId: userId.value,
         },
       })
-    } catch (_) {
-    } finally {
+    }
+    catch (_) {
+    }
+    finally {
       finish()
     }
   }

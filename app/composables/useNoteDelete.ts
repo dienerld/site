@@ -20,15 +20,16 @@ export function useNoteDelete({ slug }: DeleteOptions) {
 
       toast.add({
         title: 'Note deleted!',
-        color: 'green',
       })
-    } catch (error) {
+    }
+    catch (error) {
       toast.add({
         title: 'Note delete error',
         description: error.data?.message,
-        color: 'red',
+        color: 'error',
       })
-    } finally {
+    }
+    finally {
       finish()
     }
   }

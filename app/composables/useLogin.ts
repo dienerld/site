@@ -11,13 +11,15 @@ export function useLogin() {
         method: 'POST',
         body: { password: password.value },
       })
-    } catch (error) {
+    }
+    catch (error: any) {
       toast.add({
         title: 'Wrong password',
         description: error.data?.message,
-        color: 'red',
+        color: 'error',
       })
-    } finally {
+    }
+    finally {
       finish()
     }
   }
