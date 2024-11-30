@@ -3,6 +3,7 @@
 *::after {
   box-sizing: border-box;
   min-width: 0;
+  font-family: 'Roboto','Inter', sans-serif;
 }
 * {
   margin: 0;
@@ -75,6 +76,10 @@ p {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.container-prose-xl{
+  --container-prose: var(--ui-container);
 }
 
 /* Default class for <Transition> component */
