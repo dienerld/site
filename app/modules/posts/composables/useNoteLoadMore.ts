@@ -1,4 +1,4 @@
-import type { NoteVirtual } from '~/entities/Note'
+import type { NoteVirtual } from '~~/shared/entities/note'
 
 export function useNoteLoadMore() {
   const loading = ref<boolean>(false)
@@ -18,8 +18,10 @@ export function useNoteLoadMore() {
       })
 
       results.value = response.results
-    } catch (e) {
-    } finally {
+    }
+    catch (e) {
+    }
+    finally {
       loading.value = false
     }
   }

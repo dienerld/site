@@ -21,7 +21,7 @@ const icon = computed(() => langs.value.find(item => item.value === locale.value
     variant="ghost"
     color="primary"
     size="lg"
-    :icon="locale === 'br' ? 'i-flag:br-4x3' : 'i-flag:us-4x3'"
+    :icon="locale === 'en' ? 'i-flag:br-4x3' : 'i-flag:us-4x3'"
     class="flex w-auto"
     :aria-label="locale === 'en' ? 'Change language to Portuguese' : 'Mude para o idioma Inglês'"
     @click="setLocale(locale === 'en' ? 'br' : 'en')"

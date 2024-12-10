@@ -14,7 +14,7 @@ const scrollPercentage = ref(0)
 
 const computedY1 = computed(
   () =>
-    mapRange(scrollYProgress.value, 0, 0.8, scrollYProgress.value, svgHeight.value)
+    mapRange(scrollYProgress.value, 0, 0.4, scrollYProgress.value, svgHeight.value)
     * (1.4 - scrollPercentage.value),
 )
 

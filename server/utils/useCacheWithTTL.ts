@@ -12,5 +12,9 @@ export function useCacheWithOneWeekTTL() {
     return cached as T
   }
 
-  return { get, set }
+  const remove = async (slug: string) => {
+    await useStorage().removeItem(slug)
+  }
+
+  return { get, set, remove }
 }

@@ -14,13 +14,15 @@ export function useNotePublish({ slug }: PublishOptions) {
     start()
 
     try {
-      await $fetch(`/api/notes/${slug}/publish`, {
+      const res = await $fetch(`/api/notes/${slug}/publish`, {
         method: 'POST',
       })
 
       toast.add({
         title: 'Note publish!',
       })
+
+      return res
     }
     catch (error) {
       toast.add({

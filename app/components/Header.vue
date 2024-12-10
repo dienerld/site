@@ -2,6 +2,8 @@
 const localePath = useLocalePath()
 const { t } = useI18n({ useScope: 'local' })
 
+const slideoverOpen = ref(false)
+
 const pages = ref([
   { name: 'Home', to: '/' },
   { name: 'Projects', to: '/projects' },
@@ -32,7 +34,11 @@ const pages = ref([
         <LangSwitch />
         <ThemeSwitch />
       </div>
-      <USlideover title="Menu" close-icon="heroicons:x-mark" class="max-w-xs">
+      <USlideover
+        v-model:open="slideoverOpen" title="Menu"
+        close-icon="heroicons:x-mark"
+        class="max-w-xs"
+      >
         <div class="inline-block sm:hidden">
           <UButton
             icon="heroicons:bars-3"
@@ -51,6 +57,7 @@ const pages = ref([
               :to="localePath(page.to)"
               class="rounded-full"
               :label="t(page.name)"
+              @click="slideoverOpen = false"
             />
           </nav>
 

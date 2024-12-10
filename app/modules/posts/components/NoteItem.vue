@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
 import localizedFormat from 'dayjs/plugin/localizedFormat'
+import 'dayjs/locale/pt-br'
+import 'dayjs/locale/en'
 
 const props = defineProps<{
   createdAt: string
@@ -8,6 +10,9 @@ const props = defineProps<{
   title: string
 }>()
 
+const { locale } = useI18n()
+const local = computed(() => locale.value === 'en' ? 'en' : 'pt-br')
+dayjs.locale(local.value)
 dayjs.extend(localizedFormat)
 
 const time = computed(() => {
