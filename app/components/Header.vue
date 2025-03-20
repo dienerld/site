@@ -1,14 +1,18 @@
+<script lang="ts">
+export interface PageOptions {
+  name: string
+  to: string
+}
+
+interface HeaderProps {
+  pages: PageOptions[]
+}
+</script>
+
 <script setup lang="ts">
-const localePath = useLocalePath()
-const { t } = useI18n({ useScope: 'local' })
+const props = defineProps<HeaderProps>()
 
 const slideoverOpen = ref(false)
-
-const pages = ref([
-  { name: 'Home', to: '/' },
-  { name: 'Projects', to: '/projects' },
-  { name: 'Posts', to: '/posts' },
-])
 </script>
 
 <template>
@@ -20,27 +24,29 @@ const pages = ref([
     </div>
     <nav class="hidden w-full flex-1 items-center justify-center gap-2 sm:flex">
       <UButton
-        v-for="page in pages"
+        v-for="page in props.pages"
+        :id="`header-nav-${page.name}`"
         :key="page.name"
         variant="ghost"
         active-class="border"
         size="md"
-        :to="localePath(page.to)"
-        :label="t(page.name)"
+        :to="page.to"
+        :label="page.name"
       />
     </nav>
     <div class="flex flex-1 items-center justify-end gap-4 sm:flex-none">
-      <div class="hidden sm:flex items-center gap-2">
-        <LangSwitch />
-        <ThemeSwitch />
-      </div>
+      <slot name="actions" />
+
       <USlideover
-        v-model:open="slideoverOpen" title="Menu"
+        id="header-slideover"
+        v-model:open="slideoverOpen"
+        title="Menu"
         close-icon="heroicons:x-mark"
         class="max-w-xs"
       >
         <div class="inline-block sm:hidden">
           <UButton
+            id="header-slideover-button"
             icon="heroicons:bars-3"
             variant="link"
             color="primary"
@@ -48,41 +54,22 @@ const pages = ref([
           />
         </div>
         <template #body>
-          <nav class="flex w-full flex-col items-center">
+          <nav id="header-slideover-nav" class="flex w-full flex-col items-center">
             <UButton
               v-for="page in pages"
+              :id="`header-nav-${page.name}`"
               :key="page.name"
               variant="ghost"
               size="lg"
-              :to="localePath(page.to)"
+              :to="page.to"
               class="rounded-full"
-              :label="t(page.name)"
+              :label="page.name"
               @click="slideoverOpen = false"
             />
           </nav>
-
-          <hr class="text-neutral-400 dark:text-neutral-600 my-4">
-          <div class="flex flex-col w-full justify-center items-center gap-2">
-            <LangSwitch use-select />
-            <ThemeSwitch use-select />
-          </div>
+          <slot name="slideover-actions" />
         </template>
       </USlideover>
     </div>
   </header>
 </template>
-
-<i18n lang="json">
-  {
-    "en": {
-      "Home": "Home",
-      "Posts": "Posts",
-      "Projects": "Projects"
-    },
-    "br": {
-      "Home": "Início",
-      "Posts": "Postagens",
-      "Projects": "Projetos"
-    }
-  }
-</i18n>

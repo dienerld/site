@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     'nuxt-auth-utils',
     '@nuxtjs/mdc',
     '@nuxtjs/sitemap',
+    '@nuxt/test-utils/module',
   ],
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
@@ -28,19 +29,6 @@ export default defineNuxtConfig({
     public: {
       contact: {
         email: process.env.CONTACT_EMAIL,
-      },
-    },
-  },
-  content: {
-    documentDriven: true,
-    locales: ['en', 'br'],
-    defaultLocale: 'br',
-    sources: ['content', 'app/content', '~/content'],
-    highlight: {
-      // See the available themes on https://github.com/shikijs/shiki/blob/main/docs/themes.md#all-theme
-      theme: {
-        dark: 'github-dark',
-        default: 'github-light',
       },
     },
   },

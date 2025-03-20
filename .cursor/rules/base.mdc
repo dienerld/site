@@ -1,0 +1,188 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Regras para Geração de Código com LLMs
+
+## Estrutura e Organização
+
+- Cada módulo deve seguir a estrutura:
+  ```
+  modules/
+    ├── [module-name]/
+    │   ├── components/
+    │   ├── composables/
+    │   └── screens/
+  ```
+
+- Nomes de arquivos:
+  - Componentes Vue: `PascalCase.vue`
+  - Composables: `camelCase.ts`
+  - Screens: `PascalCase.vue`
+  - Testes: `[arquivo-original].spec.ts`
+
+- O projeto é separado em módulos onde cada módulo vai representar uma funcionalidade da aplicação. Pode acontecer de uma funcionalidade depender de outra então pode ser importado um módulo dentro de outro, mas deve ser feito de forma a evitar muito acoplamento entre módulos. Serviços que serão compartilhados por muitos módulos devem estar localizados no composables global que pode ser importado por todos os módulos facilmente. Esta regra vale para componentes também.
+- Dentro de cada módulo dever ter seus composables, components e screens. Essa Screen é o que agrupa tudo que será renderizado.
+- Para cada screen ele vai ter um arquivo que é responsável por indexar para o nuxt a página. Como exemplo o [index.vue](mdc:app/pague)
+- Prefira componentes simples e toda parte que envolva uma lógica deve ficar dentro de um composable
+- Utilize o ESLint para manter a consistência do código
+- A Aplicação é construída utilizando Nuxt3 com compatibilidade para nuxt4 e Nuxt Ui na versão 3
+- Implemente testes unitários para todas as funções principais
+- Implemente testes unitários para components que tem mais de uma utilização
+- Todos os testes deve ser utilizando vitest e caso necessário vue-test-utils
+
+## Estrutura do Servidor
+
+- O servidor deve seguir a estrutura:
+  ```
+  server/
+    ├── api/           # Endpoints da API
+    │   ├── [domain]/  # Agrupamento por domínio
+    │   │   ├── index.ts
+    │   │   ├── types.ts
+    │   │   └── validators.ts
+    ├── database/       # Configurações e modelos do banco de dados
+    │   ├── schema.ts   # Estrutura do banco de dados com as tipagens built-in
+    │   ├── migrations/ # Migrações do banco de dados
+    │   └── seeds/      # Dados iniciais
+    └── utils/          # Utilitários e helpers do servidor
+        ├── useDatabase.ts     # Utilitário para usar client do banco
+        └── useCacheWithTTL    # Utilitário para criar cache
+  ```
+
+- Regras para o servidor:
+  - Use TypeScript para todo o código do servidor
+  - Mantenha os endpoints da API organizados por domínio
+  - Implemente validação de dados em todas as rotas
+  - Use middleware para autenticação e autorização
+  - Use tipos explícitos para todas as funções e parâmetros
+  - Implemente logging adequado para debugging
+
+### Exemplos de Código do Servidor
+
+#### Endpoint da API
+```typescript
+// api/users/index.ts
+export default defineEventHandler(async (event) => {
+  try {
+    const body = await readBody(event)
+  
+    const user = await db.insert(tables.users)
+      .values({name: body.name})
+      .returning({
+        id: tables.id
+      })
+
+    return user
+  } catch (error) {
+    throw createError({
+      statusCode: 400,
+      message: 'Erro ao criar usuário'
+    })
+  }
+})
+```
+
+## Padrões de Código
+
+### TypeScript
+- Evite o uso de `any`
+- Defina interfaces para todas as props de componentes
+- Use tipos explícitos para retornos de funções
+- Prefira `type` sobre `interface` para definições simples
+
+### Componentes Vue
+- Use `<script setup lang="ts">` para todos os componentes
+- Props devem ser definidas com tipos explícitos
+- Emits devem ser tipados
+- Use `defineProps` e `defineEmits` com tipos TypeScript
+
+### Composables
+- Nome deve começar com 'use'
+- Retorne um objeto com as funções e estados
+- Documente os parâmetros e retornos com JSDoc
+- Mantenha a lógica de negócio isolada
+
+### Testes
+- Use Vitest para testes unitários
+- Use Vue Test Utils para componentes
+- Teste casos de sucesso e erro
+- Siga o padrão AAA (Arrange, Act, Assert)
+
+## Internacionalização
+
+- Use o sistema de i18n para todos os textos
+- Chaves de tradução devem seguir o padrão: `[module].[context].[key]`
+- Mantenha as traduções em `i18n/locales/`
+
+## Estilização
+
+- Use Nuxt UI para componentes base
+- Prefira composables para lógica de UI
+- Mantenha estilos específicos de componente no próprio arquivo
+- Use variáveis CSS para cores e medidas comuns
+
+## Boas Práticas
+
+- Evite duplicação de código
+- Mantenha funções pequenas e focadas
+- Use early returns para reduzir complexidade
+- Documente funções complexas com JSDoc
+- Siga o princípio DRY (Don't Repeat Yourself)
+- Evite o uso de 'any' em TypeScript
+- Prefira programação funcional quando possível
+- Mantenha os componentes pequenos e focados em uma única responsabilidade
+- Use comentários para explicar lógica complexa
+
+## Exemplos de Uso
+
+### Componente Vue
+```vue
+<script lang="ts">
+export interface ComponentProps {
+  title: string
+  description?: string
+}
+
+export interface UploadData {
+  name: string
+}
+</script>
+
+<script setup lang="ts">
+const props = defineProps<ComponentProps>()
+const emit = defineEmits<{
+  (e: 'wantsUpload', data: UploadData)
+}>()
+</script>
+```
+
+### Composable
+```typescript
+export function useExample() {
+  const state = ref<string>('')
+  
+  function updateState(value: string) {
+    state.value = value
+  }
+  
+  return {
+    state,
+    updateState
+  }
+}
+```
+
+### Teste
+```typescript
+describe('useExample', () => {
+  it('should update state', () => {
+    const { state, updateState } = useExample()
+    
+    updateState('test')
+    
+    expect(state.value).toBe('test')
+  })
+})
+```

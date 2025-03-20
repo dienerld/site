@@ -5,6 +5,10 @@
 .nitro
 .cache
 dist
+coverage
+__snapshots__
+_snapshots_
+
 
 # Node dependencies
 node_modules
