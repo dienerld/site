@@ -39,7 +39,7 @@ const pages = [
       "Posts": "Posts",
       "Projects": "Projects"
     },
-    "br": {
+    "pt_br": {
       "Home": "Início",
       "Posts": "Postagens",
       "Projects": "Projetos"

@@ -130,7 +130,7 @@ watch(modalLoginOpen, () => {
       "loading": "Loading",
       "logout": "Logout"
     },
-    "br":{
+    "pt_br":{
       "title": "Postagens",
       "loadMore": "Carregar mais",
       "empty": "Não há postagens para mostrar ainda.",

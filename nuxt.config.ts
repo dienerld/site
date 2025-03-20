@@ -41,7 +41,7 @@ export default defineNuxtConfig({
     lazy: true,
     defaultLocale: 'br',
     locales: [{
-      code: 'br',
+      code: 'pt_br',
       name: 'Português',
       file: 'br.ts',
     }, {

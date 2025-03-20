@@ -60,7 +60,7 @@ const { t } = useI18n({ useScope: 'local' })
       "contact": "Contact me"
     }
   },
-  "br": {
+  "pt_br": {
     "title": "Bem-vindo.",
     "description": "Meu nome é Diener Dornelas, desenvolvedor full-stack. Sou apaixonado por tecnologia e gosto de aprender novas coisas.",
     "buttons": {

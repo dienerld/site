@@ -33,7 +33,7 @@ defineOgImageComponent('Main', {
       "title": "Home"
     }
   },
-  "br": {
+  "pt_br": {
     "meta": {
       "title": "Início"
     }

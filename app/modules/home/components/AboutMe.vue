@@ -19,7 +19,7 @@ const { t } = useI18n({ useScope: 'local' })
     "title": "About me",
     "description": "Full-stack developer with experience in React and Node.js. I have knowledge of Docker and am currently exploring my skills in software development through the FullCycle course. I am passionate about technology and innovation, and I am constantly striving to improve my skills to deliver efficient and high-quality solutions."
   },
-  "br": {
+  "pt_br": {
     "title": "Sobre mim",
     "description": "Desenvolvedor full-stack com experiência em React e Node.js. Possuo conhecimentos em Docker e estou atualmente aprofundando minhas habilidades em desenvolvimento de software através do curso FullCycle. Com paixão por tecnologia e inovação, busco constantemente aprimorar minhas competências para entregar soluções eficientes e de alta qualidade."
   }

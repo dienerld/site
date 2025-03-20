@@ -155,7 +155,7 @@ watch(note, () => {
     "saved": "Saved",
     "notFound": "Post not found"
   },
-  "br":{
+  "pt_br":{
     "btnEdit": "Editar esta pagina",
     "publish": "Publicar",
     "publishing": "Publicando",

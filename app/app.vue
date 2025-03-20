@@ -1,10 +1,17 @@
 <script setup lang="ts">
+import * as locales from '@nuxt/ui/locale'
+
+const { locale } = useI18n()
+const lang = computed(() => locales[locale.value].code)
+const dir = computed(() => locales[locale.value].dir)
+
 const { t } = useI18n({ useScope: 'local' })
 
 useHead({
   title: t('site.title'),
   htmlAttrs: {
-    lang: t('site.lang'),
+    lang,
+    dir,
   },
 })
 
@@ -21,7 +28,7 @@ useSeoMeta({
     <UApp
       :toaster="{ position: 'top-center', duration: 3000 }"
       :tooltip="{ delayDuration: 200, disabled: false }"
-      :locale="$i18n.locale"
+      :locale="locales[locale]"
     >
       <NuxtPage />
     </UApp>

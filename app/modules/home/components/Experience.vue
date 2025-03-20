@@ -77,7 +77,7 @@ const content: Experience[] = [
       }
     ]
   },
-  "br": {
+  "pt_br": {
     "title": "Experiência",
     "experiences": [
       {

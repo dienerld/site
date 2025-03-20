@@ -63,7 +63,7 @@ function toggleColorMode() {
       "Light": "Light",
       "color-change": "Change color scheme"
     },
-    "br": {
+    "pt_br": {
       "Dark": "Escuro",
       "Light": "Claro",
       "color-change": "Mude o esquema de cores"

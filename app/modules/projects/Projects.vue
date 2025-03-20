@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import Card, { type Stack } from '~/modules/projects/components/Card.vue'
+import type { Stack } from '~/modules/projects/components/Card.vue'
+import Card from '~/modules/projects/components/Card.vue'
 
 interface Technology {
   icon: string

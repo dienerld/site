@@ -24,7 +24,7 @@ useSeoMeta({
     "en": {
       "title": "Projects"
     },
-    "br": {
+    "pt_br": {
       "title": "Projetos"
     }
   }
