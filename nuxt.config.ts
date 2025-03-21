@@ -18,6 +18,7 @@ export default defineNuxtConfig({
     '@nuxtjs/mdc',
     '@nuxtjs/sitemap',
     '@nuxt/test-utils/module',
+    '@nuxt/icon',
   ],
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
@@ -31,19 +32,24 @@ export default defineNuxtConfig({
         email: process.env.CONTACT_EMAIL,
       },
     },
-  },
-  site: {
-    url: process.env.SITE_URL,
-    name: process.env.SITE_NAME,
+    linkedin: {
+      clientId: process.env.LINKEDIN_CLIENT_ID,
+      clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
+      redirectUri: process.env.LINKEDIN_REDIRECT_URI,
+    },
+    site: {
+      url: process.env.SITE_URL,
+      name: process.env.SITE_NAME,
+    },
   },
   i18n: {
     debug: false,
     lazy: true,
-    defaultLocale: 'br',
+    defaultLocale: 'pt_br',
     locales: [{
       code: 'pt_br',
       name: 'Português',
-      file: 'br.ts',
+      file: 'pt-BR.ts',
     }, {
       code: 'en',
       name: 'English',

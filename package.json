@@ -9,8 +9,9 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "db:migrate": "drizzle-kit migrate:sqlite --config ./config/drizzle.config.ts",
-    "db:push": "drizzle-kit push:sqlite --config ./config/drizzle.config.ts",
+    "db:generate": "drizzle-kit generate --config ./config/drizzle.config.ts",
+    "db:migrate": "drizzle-kit migrate --config ./config/drizzle.config.ts",
+    "db:push": "drizzle-kit push --config ./config/drizzle.config.ts",
     "db:studio": "drizzle-kit studio --config ./config/drizzle.config.ts",
     "test": "vitest"
   },
@@ -29,12 +30,14 @@
   "devDependencies": {
     "@antfu/eslint-config": "^4.10.1",
     "@iconify-json/flag": "^1.2.5",
+    "@iconify-json/lucide": "^1.2.31",
     "@iconify-json/simple-icons": "^1.2.29",
     "@libsql/client": "^0.15.0",
     "@nuxt/devtools": "latest",
+    "@nuxt/icon": "1.11.0",
     "@nuxt/image": "^1.10.0",
     "@nuxt/test-utils": "^3.17.2",
-    "@nuxt/ui": "^3.0.0",
+    "@nuxt/ui": "3.0.0",
     "@nuxtjs/i18n": "^9.3.3",
     "@nuxtjs/mdc": "^0.16.1",
     "@nuxtjs/seo": "^3.0.1",
@@ -59,7 +62,12 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "better-sqlite3"
+      "@parcel/watcher",
+      "better-sqlite3",
+      "esbuild",
+      "msw",
+      "sharp",
+      "vue-demi"
     ]
   }
 }

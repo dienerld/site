@@ -16,6 +16,7 @@ export default eventHandler(async (event) => {
   await db.insert(tables.notes).values({
     slug,
     title: payload.title,
+    description: payload.description || '',
     content: payload.content,
     createdAt: new Date(),
   })

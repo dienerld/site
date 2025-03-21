@@ -91,7 +91,7 @@ const { t } = useI18n({ useScope: 'local' })
       "demo": "Demo",
       "source": "Source Code"
     },
-    "br": {
+    "pt_br": {
       "visit": "Visitar",
       "demo": "Demo",
       "source": "Código Fonte"

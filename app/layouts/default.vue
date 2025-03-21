@@ -2,11 +2,11 @@
 const { t } = useI18n({ useScope: 'local' })
 const localePath = useLocalePath()
 
-const pages = [
+const pages = computed(() => [
   { name: t('Home'), to: localePath('/') },
   { name: t('Posts'), to: localePath('/posts') },
   { name: t('Projects'), to: localePath('/projects') },
-]
+])
 </script>
 
 <template>
@@ -25,10 +25,10 @@ const pages = [
           <ThemeSwitch use-select />
         </div>
       </template>
-      <MainContent>
-        <slot />
-      </MainContent>
-    </header>
+    </Header>
+    <MainContent>
+      <slot />
+    </MainContent>
   </UContainer>
 </template>
 

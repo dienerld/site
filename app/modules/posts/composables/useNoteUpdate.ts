@@ -9,26 +9,19 @@ export function useNoteUpdate({ slug, note }: UpdateOptions) {
   const toast = useToast()
   const { start, finish, isLoading: loading } = useLoadingIndicator()
 
-  const update = async () => {
-    if (!slug || !note.value) {
+  async function update() {
+    if (!slug || !note.value?.content || !note.value?.title || !note.value?.description) {
       return
     }
 
     start()
 
     try {
-      await $fetch(`/api/notes/${slug}`, {
-        method: 'PUT',
-        body: {
-          ...note.value,
-        },
-      })
+      await $fetch(`/api/notes/${slug}`, { method: 'PUT', body: note.value })
 
-      toast.add({
-        title: 'Note updated!',
-      })
+      toast.add({ title: 'Note updated!' })
     }
-    catch (error) {
+    catch (error: any) {
       toast.add({
         title: 'Note update error',
         description: error.data?.message,

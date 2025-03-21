@@ -1,4 +1,4 @@
-import type { NoteVirtual } from '~/entities/Note'
+import type { NoteVirtual } from '~~/shared/entities/note'
 
 export function useNoteCreate() {
   const toast = useToast()
@@ -19,13 +19,15 @@ export function useNoteCreate() {
       })
 
       slug.value = response.slug
-    } catch (error) {
+    }
+    catch (error) {
       toast.add({
         title: 'Note create error',
         description: error.data?.message,
-        color: 'red',
+        color: 'error',
       })
-    } finally {
+    }
+    finally {
       finish()
     }
   }

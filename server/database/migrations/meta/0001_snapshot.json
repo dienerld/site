@@ -1,8 +1,8 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "eb7d5d58-1ef9-4ecc-a9f1-55fc7d2311df",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "9515afa3-85d3-426a-a171-137fdec9359d",
+  "prevId": "eb7d5d58-1ef9-4ecc-a9f1-55fc7d2311df",
   "tables": {
     "notes": {
       "name": "notes",
@@ -42,6 +42,14 @@
           "notNull": false,
           "autoincrement": false,
           "default": true
+        },
+        "published_on_linkedin": {
+          "name": "published_on_linkedin",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": false
         },
         "created_at": {
           "name": "created_at",

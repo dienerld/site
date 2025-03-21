@@ -2,12 +2,12 @@ export interface Note {
   slug: string
   title: string
   content: string
-  viewCount: number
-  likeCount: number
+  description: string
   isDraft: boolean
+  publishedOnLinkedin: boolean
   createdAt: string
 }
 
 export interface NoteVirtual extends Note {
-  parsed: any
+  parsed?: any
 }

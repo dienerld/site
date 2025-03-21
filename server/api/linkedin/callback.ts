@@ -6,7 +6,7 @@ interface ResponseTokenApi {
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
   const { code, state } = query
-  const { linkedinClientId, linkedinClientSecret, linkedinRedirectUri } = useRuntimeConfig().linkedin
+  const { clientId, clientSecret, redirectUri } = useRuntimeConfig().linkedin
 
   // Validar o state
   const savedState = await useStorage().getItem('linkedin_state')
@@ -24,9 +24,9 @@ export default defineEventHandler(async (event) => {
       body: new URLSearchParams({
         grant_type: 'authorization_code',
         code: code as string,
-        client_id: linkedinClientId,
-        client_secret: linkedinClientSecret,
-        redirect_uri: linkedinRedirectUri,
+        client_id: clientId,
+        client_secret: clientSecret,
+        redirect_uri: redirectUri,
       }),
     })
 
@@ -34,9 +34,8 @@ export default defineEventHandler(async (event) => {
     await useStorage().setItem('linkedin_access_token', tokenResponse.access_token)
     await useStorage().setItem('linkedin_expires_at', Date.now() + tokenResponse.expires_in * 1000)
 
-    return {
-      success: true,
-    }
+    const redirect = await useStorage().getItem('linkedin_redirect') as string
+    return sendRedirect(event, redirect)
   }
   catch (error: unknown) {
     console.error(error)

@@ -42,17 +42,15 @@ const slideoverOpen = ref(false)
         v-model:open="slideoverOpen"
         title="Menu"
         close-icon="heroicons:x-mark"
-        class="max-w-xs"
+        class="max-w-xs sm:hidden"
       >
-        <div class="inline-block sm:hidden">
-          <UButton
-            id="header-slideover-button"
-            icon="heroicons:bars-3"
-            variant="link"
-            color="primary"
-            size="lg"
-          />
-        </div>
+        <UButton
+          id="header-slideover-button"
+          icon="heroicons:bars-3"
+          variant="link"
+          color="primary"
+          size="lg"
+        />
         <template #body>
           <nav id="header-slideover-nav" class="flex w-full flex-col items-center">
             <UButton

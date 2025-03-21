@@ -1,15 +1,24 @@
-import process from 'node:process'
-
-const LINKEDIN_CLIENT_ID = process.env.LINKEDIN_CLIENT_ID
-const LINKEDIN_REDIRECT_URI = process.env.LINKEDIN_REDIRECT_URI
-
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event) => {
+  const { clientId, redirectUri } = useRuntimeConfig().linkedin
   const state = Math.random().toString(36).substring(7)
+
+  const redirect = getQuery(event).redirect as string
+
+  console.log('redirect', redirect)
 
   // Salvar o state para validação posterior
   await useStorage().setItem('linkedin_state', state)
+  await useStorage().setItem('linkedin_redirect', redirect)
 
-  const authUrl = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${LINKEDIN_CLIENT_ID}&redirect_uri=${LINKEDIN_REDIRECT_URI}&scope=r_liteprofile%20r_emailaddress%20w_member_social&state=${state}`
+  const params = new URLSearchParams({
+    response_type: 'code',
+    client_id: clientId,
+    redirect_uri: redirectUri,
+    scope: 'openid profile w_member_social email',
+    state,
+  })
+
+  const authUrl = `https://www.linkedin.com/oauth/v2/authorization?${params.toString()}`
 
   return {
     url: authUrl,

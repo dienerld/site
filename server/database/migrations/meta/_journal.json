@@ -1,12 +1,19 @@
 {
-  "version": "5",
+  "version": "7",
   "dialect": "sqlite",
   "entries": [
     {
       "idx": 0,
-      "version": "5",
-      "when": 1732314421960,
-      "tag": "0000_married_guardsmen",
+      "version": "6",
+      "when": 1742519208180,
+      "tag": "0000_fat_zzzax",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1742521995374,
+      "tag": "0001_minor_magma",
       "breakpoints": true
     }
   ]

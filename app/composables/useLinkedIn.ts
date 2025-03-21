@@ -14,7 +14,7 @@ export function useLinkedIn() {
 
   async function authenticate() {
     try {
-      const response = await $fetch<ResponseAuthApi>('/api/linkedin/auth')
+      const response = await $fetch<ResponseAuthApi>(`/api/linkedin/auth?redirect=${window.location.href}`)
       if (response.url) {
         window.location.href = response.url
       }

@@ -1,0 +1,1 @@
+ALTER TABLE `notes` ADD `published_on_linkedin` integer DEFAULT false;

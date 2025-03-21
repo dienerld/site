@@ -17,27 +17,25 @@ export default eventHandler(async (event) => {
 
   const payload = await readBody<NoteVirtual>(event)
 
-  const { likeCount, viewCount, createdAt } = await db
+  const { createdAt } = await db
     .update(tables.notes)
     .set({
       title: payload.title,
       content: payload.content,
+      description: payload.description,
       isDraft: payload.isDraft,
     })
     .where(eq(tables.notes.slug, slug))
     .returning({
-      likeCount: tables.notes.likeCount,
-      viewCount: tables.notes.viewCount,
       createdAt: tables.notes.createdAt,
     })
     .get()
 
   await set(slug, {
     slug,
-    likeCount,
-    viewCount,
     title: payload.title,
     content: payload.content,
+    description: payload.description,
     isDraft: payload.isDraft ?? false,
     createdAt: createdAt.toISOString(),
     parsed: await parseMarkdown(payload.content),

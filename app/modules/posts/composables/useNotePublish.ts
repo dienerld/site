@@ -1,12 +1,16 @@
-export interface PublishOptions {
+export interface NotePublishOptions {
   slug: string
 }
 
-export function useNotePublish({ slug }: PublishOptions) {
+export interface PublishOptions {
+  publishOnLinkedin?: boolean
+}
+
+export function useNotePublish({ slug }: NotePublishOptions) {
   const toast = useToast()
   const { start, finish, isLoading: loading } = useLoadingIndicator()
 
-  const publish = async () => {
+  async function publish({ publishOnLinkedin = false }: PublishOptions) {
     if (!slug) {
       return
     }
@@ -16,6 +20,9 @@ export function useNotePublish({ slug }: PublishOptions) {
     try {
       const res = await $fetch(`/api/notes/${slug}/publish`, {
         method: 'POST',
+        body: {
+          publishOnLinkedin,
+        },
       })
 
       toast.add({

@@ -7,7 +7,8 @@ const emit = defineEmits<{
   (e: 'new', name: string): void
 }>()
 
-const name = ref<string>('')
+const { t } = useI18n({ useScope: 'local' })
+const name = ref('')
 </script>
 
 <template>
@@ -15,14 +16,29 @@ const name = ref<string>('')
     class="flex flex-col gap-2 p-5"
     @submit.prevent="() => emit('new', name)"
   >
-    <UFormGroup label="Name your note" name="name">
+    <UFormField :label="t('titleLabel')" name="title">
       <UInput v-model="name" type="text" />
-    </UFormGroup>
+    </UFormField>
 
     <div>
-      <UButton type="submit">
-        {{ props.loading ? "Loading" : "Create" }}
+      <UButton type="submit" :loading="props.loading">
+        {{ props.loading ? t('loading') : t('create') }}
       </UButton>
     </div>
   </form>
 </template>
+
+<i18n lang="json">
+{
+  "en": {
+    "titleLabel": "Title",
+    "loading": "Loading",
+    "create": "Create"
+  },
+  "pt_br": {
+    "titleLabel": "Título",
+    "loading": "Carregando",
+    "create": "Criar"
+  }
+}
+</i18n>

@@ -8,11 +8,11 @@ export default eventHandler(async (event) => {
   }
 
   const { get, set } = useCacheWithOneWeekTTL()
-  const cachedNote = await get<NoteVirtual>(slug)
+  // const cachedNote = await get<NoteVirtual>(slug)
 
-  if (cachedNote) {
-    return cachedNote
-  }
+  // if (cachedNote) {
+  //   return cachedNote
+  // }
 
   const db = useDatabase()
   if (!db) {
@@ -32,8 +32,7 @@ export default eventHandler(async (event) => {
     slug,
     title: note.title,
     content: note.content,
-    viewCount: note.viewCount ?? 0,
-    likeCount: note.likeCount ?? 0,
+    description: note.description,
     isDraft: note.isDraft ?? false,
     createdAt: note.createdAt.toISOString(),
     parsed: await parseMarkdown(note.content),
