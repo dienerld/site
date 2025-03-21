@@ -120,12 +120,6 @@ importers:
       nuxt-auth-utils:
         specifier: ^0.5.17
         version: 0.5.17(magicast@0.3.5)
-      playwright:
-        specifier: ^1.51.1
-        version: 1.51.1
-      playwright-core:
-        specifier: ^1.51.1
-        version: 1.51.1
       tailwindcss-animate:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@4.0.15)
@@ -12386,6 +12380,7 @@ snapshots:
       playwright-core: 1.51.1
     optionalDependencies:
       fsevents: 2.3.2
+    optional: true
 
   pluralize@8.0.0: {}
 
