@@ -17,8 +17,6 @@ export default defineNuxtConfig({
     'nuxt-auth-utils',
     '@nuxtjs/mdc',
     '@nuxtjs/sitemap',
-    '@nuxt/test-utils/module',
-    '@nuxt/icon',
   ],
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
