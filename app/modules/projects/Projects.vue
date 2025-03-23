@@ -1,87 +1,44 @@
 <script setup lang="ts">
-import type { Stack } from '~/modules/projects/components/Card.vue'
 import Card from '~/modules/projects/components/Card.vue'
+import CreateProject from '~/modules/projects/components/CreateProject.vue'
+import EditProject from '~/modules/projects/components/EditProject.vue'
+import CardLoader from '~/modules/projects/components/Loader.vue'
+import { useCreateProject } from './composables/useCreateProject'
+import { useListProjects } from './composables/useListProjects'
+import { useListTechnologies } from './composables/useListTechnologies'
+import { useUpdateProject } from './composables/useUpdateProject'
 
-interface Technology {
-  icon: string
-  label: string
-  classColor?: string
-}
-
-interface Project {
-  name: string
-  demo: string
-  source?: string
-  stack?: Stack
-  technologies: Technology[]
-}
+const { loggedIn } = useUserSession()
 
 const { t } = useI18n({ useScope: 'local' })
+const { modalCreateProjectOpen, project, createProject } = useCreateProject()
+const { projects, status, refetch } = useListProjects()
+const { technologies, technologiesStatus } = useListTechnologies()
 
-const projects: Ref<Project[]> = ref([
-  {
-    name: 'schedule',
-    demo: 'https://agenda.dienerld.dev',
-    source: 'https://github.com/dienerld/schedule-nuxt-primevue',
-    stack: 'full-stack',
-    technologies: [
-      {
-        icon: 'simple-icons:nuxtdotjs',
-        label: 'NuxtJS',
-        classColor: 'text-primary-500',
-      },
-      {
-        icon: 'simple-icons:typescript',
-        label: 'Typescript',
-      },
-      {
-        label: 'Drizzle ORM',
-        icon: 'simple-icons:drizzle',
-      },
-      {
-        icon: 'simple-icons:tailwindcss',
-        label: 'TailwindCSS',
-      },
-      {
-        icon: 'simple-icons:primevue',
-        label: 'PrimeVue',
-      },
-    ],
-  },
-  {
-    name: 'farm-manager',
-    demo: 'https://app.dienerld.dev',
-    stack: 'full-stack',
-    technologies: [
+const { projectToEdit, status: updateStatus, updateProject, fetchProject, modalEditProjectOpen } = useUpdateProject()
 
-      {
-        icon: 'simple-icons:typescript',
-        label: 'Typescript',
-      },
-      {
-        label: 'Fastify',
-        icon: 'simple-icons:fastify',
-      },
-      {
-        icon: 'simple-icons:postgresql',
-        label: 'PostgreSQL',
-      },
-      {
-        icon: 'simple-icons:nuxtdotjs',
-        label: 'NuxtJS',
-      },
-      {
-        icon: 'simple-icons:tailwindcss',
-        label: 'TailwindCSS',
-      },
+async function handleUpdateProject() {
+  await updateProject()
+  await refetch()
+}
 
-      {
-        icon: 'simple-icons:primevue',
-        label: 'PrimeVue',
-      },
-    ],
-  },
-])
+async function handleCreateProject() {
+  await createProject()
+  await refetch()
+}
+
+useSeoMeta({
+  title: t('title'),
+  description: t('description'),
+  ogTitle: t('title'),
+  ogDescription: t('description'),
+})
+
+defineOgImageComponent('NuxtSeo', {
+  title: t('title'),
+  description: t('description'),
+  theme: '#00c951',
+})
 </script>
 
 <template>
@@ -90,15 +47,45 @@ const projects: Ref<Project[]> = ref([
       {{ t('title') }}
     </h1>
     <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      <Card
-        v-for="project in projects"
-        :key="project.name"
-        v-bind="project"
-        :title="t(`projects.${project.name}.title`)"
-        :description="t(`projects.${project.name}.description`)"
-      />
+      <CardLoader :loading="status === 'pending'">
+        <Card
+          v-for="p in projects" :key="p.name"
+          v-bind="p"
+          :is-authenticated="loggedIn"
+          @wants-edit="fetchProject"
+        />
+      </CardLoader>
     </div>
+    <CreateProject
+      key="create-project"
+      v-model:open-modal="modalCreateProjectOpen"
+      v-model:project="project"
+      :technologies
+      :technologies-status
+      @wants-create-project="handleCreateProject"
+    />
+    <EditProject
+      v-if="projectToEdit"
+      key="edit-project"
+      v-model:open-modal="modalEditProjectOpen"
+      v-model:project="projectToEdit"
+      :technologies
+      :technologies-status
+      :loading="updateStatus === 'pending'"
+      @wants-update-project="handleUpdateProject"
+    />
   </div>
 </template>
 
-<i18n lang="json" src="./i18n.json"></i18n>
+<i18n lang="json">
+  {
+    "en": {
+      "title": "Projects",
+      "description": "List of all my projects"
+    },
+    "pt_br": {
+      "title": "Projetos",
+      "description": "Listagem com todos os meus projetos"
+    }
+  }
+</i18n>

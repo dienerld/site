@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import cv from '~/assets/files/cv-diener.pdf'
-import img from '~/assets/images/logo.jpg'
 
 const { contact } = useRuntimeConfig().public
 const { t } = useI18n({ useScope: 'local' })

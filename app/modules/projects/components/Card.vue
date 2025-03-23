@@ -1,21 +1,14 @@
 <script setup lang="ts">
-interface TechProps {
-  icon: string
-  label: string
-  classColor?: string
+import type { ProjectVirtual } from '~~/shared/entities/project'
+
+type CardProps = ProjectVirtual & {
+  isAuthenticated: boolean
 }
 
-export type Stack = 'back-end' | 'front-end' | 'full-stack'
-
-const props = defineProps<{
-  title: string
-  description: string
-  technologies: TechProps[]
-  demo?: string
-  source?: string
-  stack?: Stack
+const props = defineProps<CardProps>()
+const emit = defineEmits<{
+  (e: 'wantsEdit', id: number): void
 }>()
-
 const { t } = useI18n({ useScope: 'local' })
 </script>
 
@@ -26,31 +19,44 @@ const { t } = useI18n({ useScope: 'local' })
       class="flex flex-col-reverse gap-2"
     >
       <h3 class="text-lg font-bold">
-        {{ props.title }}
+        {{ props.name }}
         <UBadge v-if="props.stack" variant="soft" color="secondary">
           {{ props.stack }}
         </UBadge>
       </h3>
       <div id="technologies" class="flex gap-2">
         <UTooltip
-          v-for="technology in props.technologies" :key="technology.label"
-          :text="technology.label"
+          v-for="technology in props.technologies"
+          :key="technology.name"
+          :text="technology.name"
         >
           <Icon
             :name="technology.icon"
             :class="`size-5 ${technology.classColor ?? 'text-primary-500'}`"
           />
         </UTooltip>
+
+        <template v-if="props.isAuthenticated">
+          <UButton
+            class="ml-auto cursor-pointer"
+            size="sm"
+            type="button"
+            variant="outline"
+            color="warning"
+            :label="t('edit')"
+            @click="emit('wantsEdit', props.id)"
+          />
+        </template>
       </div>
     </section>
 
-    <p class="text-sm h-full">
+    <p class="text-sm">
       {{ props.description }}
     </p>
-    <section id="group-links" class="flex items-center justify-between">
+    <section id="group-links" class="flex items-end justify-between flex-1">
       <UButton
         v-if="props.demo"
-        class="mt-4 cursor-pointer"
+        class="cursor-pointer"
         size="sm"
         type="button"
         :href="props.demo"
@@ -58,20 +64,25 @@ const { t } = useI18n({ useScope: 'local' })
       >
         {{ t('demo') }}
       </UButton>
-
-      <UTooltip v-if="props.source" :text="t('source')">
-        <UButton
-          v-if="props.source"
-          class="mt-4 text-black dark:text-white cursor-pointer"
-          size="sm"
-          type="button"
-          variant="outline"
-          :href="props.source"
-          target="_blank"
-          :aria-label="t('source')"
-          icon="simple-icons:github"
-        />
-      </UTooltip>
+      <div class="flex gap-2">
+        <UTooltip
+          v-for="source in props.sources"
+          :key="source.name"
+          :text="source.name ? `${t('source')} - ${source.name}` : t('source')"
+        >
+          <UButton
+            v-if="props.sources"
+            class=" text-black dark:text-white cursor-pointer"
+            size="sm"
+            type="button"
+            variant="outline"
+            :href="source.url"
+            target="_blank"
+            :aria-label="t('source')"
+            icon="simple-icons:github"
+          />
+        </UTooltip>
+      </div>
     </section>
   </UCard>
 </template>
@@ -89,12 +100,14 @@ const { t } = useI18n({ useScope: 'local' })
     "en": {
       "visit": "Visit",
       "demo": "Demo",
-      "source": "Source Code"
+      "source": "Source Code",
+      "edit": "Edit"
     },
     "pt_br": {
       "visit": "Visitar",
       "demo": "Demo",
-      "source": "Código Fonte"
+      "source": "Código Fonte",
+      "edit": "Editar"
     }
   }
 </i18n>
