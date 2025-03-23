@@ -15,6 +15,20 @@
       "when": 1742521995374,
       "tag": "0001_minor_magma",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1742748884523,
+      "tag": "0002_wet_sabretooth",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1742756890239,
+      "tag": "0003_harsh_the_santerians",
+      "breakpoints": true
     }
   ]
 }

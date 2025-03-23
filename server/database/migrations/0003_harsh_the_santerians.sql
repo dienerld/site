@@ -1,0 +1,1 @@
+ALTER TABLE `technologies` ALTER COLUMN "class_color" TO "class_color" text;

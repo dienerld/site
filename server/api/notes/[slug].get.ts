@@ -8,11 +8,11 @@ export default eventHandler(async (event) => {
   }
 
   const { get, set } = useCacheWithOneWeekTTL()
-  // const cachedNote = await get<NoteVirtual>(slug)
+  const cachedNote = await get<NoteVirtual>(slug)
 
-  // if (cachedNote) {
-  //   return cachedNote
-  // }
+  if (cachedNote) {
+    return cachedNote
+  }
 
   const db = useDatabase()
   if (!db) {
@@ -36,6 +36,7 @@ export default eventHandler(async (event) => {
     isDraft: note.isDraft ?? false,
     createdAt: note.createdAt.toISOString(),
     parsed: await parseMarkdown(note.content),
+    publishedOnLinkedin: note.publishedOnLinkedin ?? false,
   }
 
   await set(slug, noteParsed)

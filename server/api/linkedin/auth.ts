@@ -4,8 +4,6 @@ export default defineEventHandler(async (event) => {
 
   const redirect = getQuery(event).redirect as string
 
-  console.log('redirect', redirect)
-
   // Salvar o state para validação posterior
   await useStorage().setItem('linkedin_state', state)
   await useStorage().setItem('linkedin_redirect', redirect)
