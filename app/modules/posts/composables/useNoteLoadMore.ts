@@ -20,6 +20,7 @@ export function useNoteLoadMore() {
       results.value = response.results
     }
     catch (e) {
+      console.error(e)
     }
     finally {
       loading.value = false

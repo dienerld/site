@@ -69,8 +69,7 @@ onUnmounted(() => {
 })
 
 function updateSVGHeight() {
-  if (!tracingBeamContentRef.value)
-    return
+  if (!tracingBeamContentRef.value) return
 
   svgHeight.value = tracingBeamContentRef.value.offsetHeight
 }

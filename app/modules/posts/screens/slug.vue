@@ -68,8 +68,7 @@ async function enableEditMode() {
 }
 
 function autogrow() {
-  if (!editor.value)
-    return
+  if (!editor.value) return
   editor.value.style.height = '5px'
   editor.value.style.height = `${editor.value.scrollHeight}px`
 }
@@ -107,7 +106,6 @@ defineOgImageComponent('NuxtSeo', {
   description: note?.value?.description || t('post.description'),
   // emerald tailwind hex color
   theme: '#00c951',
-  icon: 'heroicons:academic-cap',
 })
 </script>
 

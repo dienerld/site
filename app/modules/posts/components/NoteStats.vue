@@ -28,13 +28,19 @@ const likeLabel = computed(() => {
 
 <template>
   <div class="flex gap-2">
-    <UButton icon="i-heroicons-chart-bar" disabled color="cyan" variant="soft"> {{ viewLabel }} </UButton>
     <UButton
-      @click="() => emit('like')"
+      icon="i-heroicons-chart-bar" disabled
+      color="cyan"
+      variant="soft"
+    >
+      {{ viewLabel }}
+    </UButton>
+    <UButton
       icon="i-heroicons-hand-thumb-up"
       :disabled="props.alreadyLiked"
       color="cyan"
       variant="soft"
+      @click="() => emit('like')"
     >
       {{ likeLabel }}
     </UButton>
