@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     tursoDBToken: process.env.TURSO_DB_TOKEN,
     nodeEnv: process.env.NODE_ENV,
     public: {
+      i18nEnable: process.env.I18N_ENABLE,
       contact: {
         email: process.env.CONTACT_EMAIL,
       },
@@ -44,14 +45,19 @@ export default defineNuxtConfig({
     debug: false,
     lazy: true,
     defaultLocale: 'pt_br',
-    locales: [{
-      code: 'pt_br',
-      name: 'Português',
-      file: 'pt-BR.ts',
-    }, {
-      code: 'en',
-      name: 'English',
-      file: 'en.ts',
-    }],
+    locales: [
+      {
+        code: 'pt_br',
+        name: 'Português',
+        file: 'pt-BR.ts',
+      },
+      ...(process.env.I18N_ENABLE === 'true'
+        ? [{
+            code: 'en',
+            name: 'English',
+            file: 'en.ts',
+          }]
+        : []),
+    ],
   },
 })

@@ -2,17 +2,19 @@
   "name": "personal-site",
   "type": "module",
   "private": true,
+  "packageManager": "pnpm@10.6.5+sha512.cdf928fca20832cd59ec53826492b7dc25dc524d4370b6b4adbf65803d32efaa6c1c88147c0ae4e8d579a6c9eec715757b50d4fa35eea179d868eada4ed043af",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "db:generate": "drizzle-kit generate --config ./config/drizzle.config.ts",
-    "db:migrate": "drizzle-kit migrate --config ./config/drizzle.config.ts",
-    "db:push": "drizzle-kit push --config ./config/drizzle.config.ts",
-    "db:studio": "drizzle-kit studio --config ./config/drizzle.config.ts",
-    "test": "vitest"
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "test": "vitest",
+    "lint": "eslint --fix ."
   },
   "dependencies": {
     "@vueuse/core": "^13.0.0",
@@ -52,7 +54,6 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.8.2"
   },
-  "packageManager": "pnpm@10.6.5+sha512.cdf928fca20832cd59ec53826492b7dc25dc524d4370b6b4adbf65803d32efaa6c1c88147c0ae4e8d579a6c9eec715757b50d4fa35eea179d868eada4ed043af",
   "pnpm": {
     "onlyBuiltDependencies": [
       "@parcel/watcher",
